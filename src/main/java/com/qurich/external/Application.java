@@ -19,9 +19,7 @@ import com.qurich.external.conf.PropConfig;
 //@MapperScan(basePackages = "com.forman.livingshow.mapper")
 @EnableScheduling
 public class Application extends WebMvcConfigurerAdapter {
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-    
 }
