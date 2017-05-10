@@ -35,7 +35,33 @@
 </style>
 <#include "/comm/head.ftl">
 <div class="container">
+<#assign query = "type=${status}&bull=${bulllist}">
                 <div class="ibox float-e-margins">
+                 <div class="row">
+					<div class="col-sm-2 condition_type">
+						<div class="form-group">
+							<label class="control-label">类型</label><select name="btype"
+								class="form-control">
+								<option value="0">全部</option> 
+								<option value="1" <#if status==1>selected="selected"</#if>>A股</option> 
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 condition_bull">
+						<div class="form-group">
+							<label class="control-label">公司利好</label>
+							<#include "/scomm/company_good_select2.ftl">
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label" for="status">&nbsp;</label> <span
+								class="input-group-btn">
+								<button type="submit" id="bsearch" class="btn btn-primary">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
                     <div class="ibox-content ">
                    	 <#list list as bean> 
                         <div class="timeline-item">
@@ -61,8 +87,35 @@
                 </div>
             </div>
 <#include "/comm/foot.ftl">
+<!-- Select2 -->
+<script src="${BASE_PATH}/static/js/plugins/select2/select2.full.min.js"></script>
+<link href="${BASE_PATH}/static/css/plugins/select2/select2.min.css" rel="stylesheet">
+
+
+
 <script type="text/javascript">
 	$(function(){
 		
+		 $(".condition_bull .select2_bull").select2().val([${bullArray}]).trigger('change');
+		
+		 //搜索
+		 $("#bsearch").click(function(){
+			var type=$(".condition_type").find("select").val();
+			var bull=$(".condition_bull .select2_bull").val();
+			var url="${BASE_PATH}/message/bull?";
+			if(type!=undefined&&type!=null&&type!=0){
+				url+="type="+type
+				if(bull!=undefined&&bull!=null){
+					url+="&bull="+bull
+				}
+			}else{
+				if(bull!=undefined&&bull!=null){
+					url+="bull="+bull
+				}
+			}
+			location.href=url;
+		 });
+		 
+		 
 	});
 </script>

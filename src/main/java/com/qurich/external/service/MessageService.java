@@ -1,7 +1,9 @@
 package com.qurich.external.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,11 +43,28 @@ public class MessageService {
     }
 	
 	//公司利好
-	public String listType(int page,Model model){
+	public String listType(int status,String bull,int page,Model model){
     	try{
-    		List<Message> list = messageMapper.getBeanListType(3,(page-1)*30, 30);
-    		int totalRecord = messageMapper.getBeanAllCountType(3);
-    		messageMapper.updateViewList(list);
+    		List<String> bulls=new ArrayList<String>();
+    		if("null".equals(bull.toLowerCase())){
+				bull="";
+			}
+    		if(StringUtils.isNotBlank(bull)){
+    			String[] arr=bull.split(",");
+    			String bullArray="";
+    			for(String s:arr){
+    				bullArray+=",'"+s+"'";
+    				bulls.add(s);
+    			}
+    			model.addAttribute("bullArray", bullArray.replaceFirst(",", ""));
+    		}else{
+    			model.addAttribute("bullArray", "");
+    		}
+    		
+    		List<Message> list = messageMapper.getBeanListType(bulls,status,3,(page-1)*30, 30);
+    		int totalRecord = messageMapper.getBeanAllCountType(bulls,status,3);
+    		if(list.size()>0)
+    			messageMapper.updateViewList(list);
     		PageUtil pageUtil = new PageUtil(30, totalRecord, page);
     		pageUtil.setTotalRecord(totalRecord);
     		pageUtil.setPageNumStart(pageUtil.getPageNumStart());
@@ -53,6 +72,8 @@ public class MessageService {
     		pageUtil.setCurrentPage(page);
     		pageUtil.setUrlName("message/bull");
     		model.addAttribute("list", list);
+    		model.addAttribute("status", status);
+    		model.addAttribute("bulllist", bull);
     		model.addAttribute("showPage", pageUtil);
     	}catch(Exception e){
     		log.error("MessageService.listType异常",e);

@@ -78,18 +78,27 @@ public interface MessageMapper {
 	@Select({"<script>",
         "SELECT * from message", 
         "WHERE is_del=0 and `from`=#{type}", 
+        "<if test='status!=0'>and status = #{status}</if>",
+        "<foreach item='item' index='index' collection='bulls'>",
+	        "and FIND_IN_SET(#{item},bull_category)",
+	     "</foreach>",
         "order by time desc limit #{offset},#{rows}",
         "</script>"})
 	@Results({  
 	    @Result(property="bull_category",column="bull_category")
 	})
-	List<Message> getBeanListType(@Param("type") int type,@Param("offset") int offset,@Param("rows") int rows);
+	List<Message> getBeanListType(@Param("bulls") List<String> bulls,@Param("status") int status,@Param("type") int type,@Param("offset") int offset,@Param("rows") int rows);
 
 	@Select({"<script>",
         "SELECT count(1) from message", 
         "WHERE is_del=0 and `from`=#{type}",
+        "<if test='status!=0'>and status = #{status}</if>",
+        "<foreach item='item' index='index' collection='bulls'>",
+        "and FIND_IN_SET(#{item},bull_category)",
+     "</foreach>",
         "</script>"})
-	int getBeanAllCountType(@Param("type")int type);
+	int getBeanAllCountType(@Param("bulls") List<String> bulls,@Param("status") int status,@Param("type")int type);
+	
 	
 	
 	@Select("SELECT * from message where id=#{id}")
