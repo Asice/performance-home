@@ -38,13 +38,26 @@
 		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/performance/notice/new/pday">业绩预告</a></li>
 		                    </ul>
                         </li>
+                        <li class="dropdown profile-element">
+                        	<a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">定向增发</a>
+                        	<ul uib-dropdown-menu="" class="animated fadeInRight m-t-xs dropdown-menu">
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/issuance/notice">增发预案</a></li>
+		                         <li class="divider"></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/issuance/report">增发实施</a></li>
+		                    </ul>
+                        </li>
                     </ul>
                  </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                	 <ul class="nav navbar-nav navbar-right">
                         <li><a class="page-scroll" href="#">登录</a></li>
                         <li><a class="page-scroll" href="#">注册</a></li>
                     </ul>
+                	<div class="navbar-form-custom navbar-right" style="margin: 0;">
+		                <div class="form-group">
+		                    <input type="text" style="height:50px;" placeholder="查询个股" class="form-control" name="top-search" id="top-search" />
+		                </div>
+		            </div>
                 </div>
             </div>
         </nav> 
@@ -58,6 +71,11 @@
 				return;
 			}
 		});
+		$("#top-search").keyup(function(event){ 
+			if(event.keyCode==13){ 
+				location.href="/s/"+$(this).val();
+			} 
+		 }); 
 		
 	});
 </script>
