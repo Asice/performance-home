@@ -2,6 +2,24 @@
 
 <#include "/comm/head.ftl">
 <div class="container">
+				<div class="row">
+				<form action="${BASE_PATH}/issuance/notice/stock" method="post">
+					<div class="col-sm-2 condition_type">
+						<div class="form-group">
+							<label class="control-label">股票</label>
+							<input type="text"  name="stock" value="${stock}" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label" for="status">&nbsp;</label> <span
+								class="input-group-btn">
+								<button type="submit"  class="btn btn-primary">搜索</button>
+							</span>
+						</div>
+					</div>
+					</form>
+				</div>
                 <div class="ibox float-e-margins">
                     <div class="ibox-content" style="overflow-x:scroll;">
                    		<table class="footable table table-stripped toggle-arrow-tiny no-paging footable-loaded default"
@@ -9,7 +27,7 @@
 							<thead>
 								<tr>
 									<th class="text-center footable-visible footable-first-column">序号</th>
-									<th class="text-center footable-visible"><a href="${BASE_PATH}/issuance/notice/stock/${sortdest}/1">股票代码</a></th>
+									<th class="text-center footable-visible"><a href="${BASE_PATH}/issuance/notice/stock/${sortdest}/1">股票代码</a></th>
 									<th class="text-center footable-visible"><a href="${BASE_PATH}/issuance/notice/name/${sortdest}/1">股票名称</a></th>
 									<th class="text-center footable-visible"><a href="${BASE_PATH}/issuance/notice/schedule/${sortdest}/1">方案进度</a></th>
 									<th class="text-center footable-visible"><a href="${BASE_PATH}/issuance/notice/zfsl/${sortdest}/1">增发数量(万股)</a></th>
