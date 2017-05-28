@@ -12,7 +12,7 @@ import com.qurich.external.conf.PropConfig;
 
 
 @Controller
-@EnableWebMvc
+@EnableWebMvc 
 @SpringBootApplication
 @EnableConfigurationProperties({PropConfig.class})
 //@MapperScan(basePackages = "tk.mybatis.springboot.mapper", markerInterface = MyMapper.class)

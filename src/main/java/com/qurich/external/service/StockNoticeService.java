@@ -85,7 +85,7 @@ public class StockNoticeService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		try{
 			if("new".equals(date)){
-				date=dateFormat.format(QuarterReportDayUtil.getCurrentQuarterStartTime());
+				date=dateFormat.format(QuarterReportDayUtil.getCurrentQuarterEndTime());
 			}
 			List<StockNotice> list = stockNoticeMapper.getBeanList(date,field,sort,(page-1)*50, 50);
 			this.yjbdjy(list);

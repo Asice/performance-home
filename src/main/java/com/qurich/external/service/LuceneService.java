@@ -69,8 +69,7 @@ public class LuceneService {
 		// map value倒序
 		stockMap.entrySet()
 				.stream()
-				.sorted(Map.Entry.<String, Integer> comparingByValue()
-						.reversed())
+				.sorted(Map.Entry.<String, Integer> comparingByValue().reversed())
 				.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 		int i = 0;
 		for (String key : sortedMap.keySet()) {

@@ -118,5 +118,29 @@ public class IssuanceService {
     	}
     	return "issuance/notice";
 	}
+
+	public String stock(String stock, Model model, HttpServletRequest request) {
+		try{
+			List<Issuance> list = issuanceMapper.getBeanStockList(stock);
+    		model.addAttribute("list", list);
+    		model.addAttribute("stock", stock);
+    		model.addAttribute("sortdest", "desc");
+		}catch(Exception e){
+    		log.error("IssuanceService.report异常",e);
+    	}
+    	return "issuance/report";
+	}
+	
+	public String stock2(String stock, Model model, HttpServletRequest request) {
+		try{
+			List<IssuanceNotice> list = issuanceNoticeMapper.getBeanStockList(stock);
+    		model.addAttribute("list", list);
+    		model.addAttribute("stock", stock);
+    		model.addAttribute("sortdest", "desc");
+		}catch(Exception e){
+    		log.error("IssuanceService.stock2异常",e);
+    	}
+    	return "issuance/notice";
+	}
 	
 }

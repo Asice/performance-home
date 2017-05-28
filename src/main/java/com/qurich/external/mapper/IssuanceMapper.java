@@ -19,5 +19,11 @@ public interface IssuanceMapper {
 	
 	@Select("SELECT count(id) from issuance")
 	int getBeanAllCount();
+	
+	@Select({"<script>",
+        "SELECT * from issuance where stock=#{stock} or name=#{stock}", 
+        "</script>"})
+	List<Issuance> getBeanStockList(@Param("stock") String stock);
+	
 
 }

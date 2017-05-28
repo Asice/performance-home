@@ -28,7 +28,7 @@
                 <div>
                 	<ul class="nav navbar-nav">
                         <li class=""><a class="page-scroll home" href="${BASE_PATH}/index">资讯直播</a></li>
-                        <li class=""><a class="page-scroll" href="${BASE_PATH}/lucene/analyze">资讯分析</a></li>
+                        <#--<li class=""><a class="page-scroll" href="${BASE_PATH}/lucene/analyze">资讯分析</a></li>-->
                          <li class=""><a class="page-scroll" href="${BASE_PATH}/message/bull">公司利好</a></li>
                         <li class="dropdown profile-element">
                         	<a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">业绩数据</a>
@@ -46,6 +46,7 @@
 		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/issuance/report">增发实施</a></li>
 		                    </ul>
                         </li>
+                         <li class=""><a class="page-scroll" href="${BASE_PATH}/concept/list">概念</a></li>
                     </ul>
                  </div>
                 <div id="navbar" class="navbar-collapse collapse">
