@@ -10,10 +10,8 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -139,6 +137,27 @@ public class StockNoticeService {
     		log.error("excel导出异常:",e);
     	}
 		return null;
+	}
+
+	public String stock(String date, String stock, Model model,
+			HttpServletRequest request) {
+		try{
+			if("new".equals(date)){
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				date=dateFormat.format(QuarterReportDayUtil.getCurrentQuarterStartTime());
+			}
+			List<StockNotice> list = stockNoticeMapper.getBeanStockList(date,stock);
+			List<StockNotice> quarterDayAll= stockNoticeMapper.getBeanQuarterDayAll();
+    		model.addAttribute("list", list);
+    		model.addAttribute("date", date);
+    		model.addAttribute("quarterDayAll", quarterDayAll);
+    		model.addAttribute("sortdest", "desc");
+    		model.addAttribute("stock", stock);
+    		
+		}catch(Exception e){
+    		log.error("StockPerformanceService.stock异常",e);
+    	}
+    	return "performance/notice/list";
 	}
 	
 }

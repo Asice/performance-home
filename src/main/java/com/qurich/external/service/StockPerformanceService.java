@@ -88,5 +88,27 @@ public class StockPerformanceService {
     	}
 		return null;
 	}
-	
+
+
+	public String stock(String date, String stock, Model model,
+			HttpServletRequest request) {
+		try{
+			if("new".equals(date)){
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				date=dateFormat.format(QuarterReportDayUtil.getCurrentQuarterStartTime());
+			}
+			List<StockPerformance> list = stockPerformanceMapper.getBeanRStockList(date,stock);
+    		List<StockPerformance> quarterDayAll= stockPerformanceMapper.getBeanQuarterDayAll();
+    		model.addAttribute("list", list);
+    		model.addAttribute("date", date);
+    		model.addAttribute("quarterDayAll", quarterDayAll);
+    		model.addAttribute("sortdest", "desc");
+    		model.addAttribute("stock", stock);
+    		
+		}catch(Exception e){
+    		log.error("StockPerformanceService.stock异常"+e);
+    	}
+    	return "performance/list";
+	}
+
 }

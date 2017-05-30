@@ -67,4 +67,26 @@ public interface StockNoticeMapper {
 	    @Result(property="quarter_day",column="quarter_day")
 	})
 	List<StockNotice> getBeanQuarterDayAll();
+	
+	
+	@Select({"<script>",
+        "SELECT * from stock_notice", 
+        "WHERE quarter_day=#{date} and( stock=#{stock} or name=#{stock})", 
+        "</script>"})
+	@Results({  
+		 @Result(property="yjbd_low",column="yjbd_low"),  
+		    @Result(property="yjbd_up",column="yjbd_up"),  
+		    @Result(property="year_low",column="year_low"),  
+		    @Result(property="year_up",column="year_up"),  
+		    @Result(property="quarter_low",column="quarter_low"),  
+		    @Result(property="quarter_up",column="quarter_up"),  
+		    @Result(property="yqsyl_low",column="yqsyl_low"),  
+		    @Result(property="yqsyl_up",column="yqsyl_up"),  
+		    @Result(property="yqmgsy_low",column="yqmgsy_low"),  
+		    @Result(property="yqmgsy_up",column="yqmgsy_up"), 
+		    @Result(property="jrl_last",column="jrl_last"),
+		    @Result(property="quarter_day",column="quarter_day")
+	})
+	List<StockNotice> getBeanStockList(@Param("date") String date,@Param("stock") String stock);
+
 }

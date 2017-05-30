@@ -3,10 +3,11 @@
 <#include "/comm/head.ftl">
 <div class="container">
                 <div class="ibox float-e-margins">
+                <form action="${BASE_PATH}/performance/notice/stock" method="post">
                 	<div class="col-sm-2">
 						<div class="form-group">
 							<label class="control-label">数据日期</label> 
-							<select id="reportDay"  class="form-control">
+							<select id="reportDay" name="date" class="form-control">
 							<#list quarterDayAll as bean>
 								<#if (bean.quarter_day?string("yyyy-MM-dd"))==date>
 									<option selected="selected" value="${(bean.quarter_day?string("yyyy-MM-dd"))!}">${(bean.quarter_day?string("yyyy-MM-dd"))!}</option> 
@@ -17,6 +18,13 @@
 							</select>
 						</div>
 					</div>
+					<div class="col-sm-2 condition_type">
+						<div class="form-group">
+							<label class="control-label">股票</label>
+							<input type="text"  name="stock" value="${stock}" class="form-control">
+						</div>
+					</div>
+					</form>
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label class="control-label" for="status">&nbsp;</label> <span class="input-group-btn">

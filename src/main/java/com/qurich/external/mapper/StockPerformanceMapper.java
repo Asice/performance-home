@@ -53,5 +53,20 @@ public interface StockPerformanceMapper {
 	    @Result(property="quarter_day",column="quarter_day")
 	})
 	List<StockPerformance> getBeanQuarterDayAll();
+	
+	
+	@Select({"<script>",
+        "SELECT * from stock_performance", 
+        "WHERE quarter_day=#{date} and (stock=#{stock} or name=#{stock})", 
+        "</script>"})
+	@Results({  
+		@Result(property="yysr_year",column="yysr_year"),  
+	    @Result(property="yysr_quarter",column="yysr_quarter"),  
+	    @Result(property="jrl_year",column="jrl_year"),  
+	    @Result(property="jrl_quarter",column="jrl_quarter"),  
+	    @Result(property="quarter_day",column="quarter_day")
+	})
+	List<StockPerformance> getBeanRStockList(@Param("date") String date,@Param("stock") String stock);
+
 
 }

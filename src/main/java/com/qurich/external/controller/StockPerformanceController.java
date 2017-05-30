@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.qurich.external.service.StockNoticeService;
 import com.qurich.external.service.StockPerformanceService;
@@ -48,6 +49,24 @@ public class StockPerformanceController {
 			HttpServletRequest request,
 			Model model){
 		return stockPerformanceService.list(date, field,sort,page,model,request);
+	}
+	
+	@RequestMapping(value="/report/stock", method=RequestMethod.POST,produces = "application/json; charset=utf-8")
+	public String stock1(
+			@RequestParam(value="date", required=false, defaultValue="")String date,
+			@RequestParam(value="stock", required=false, defaultValue="")String stock,
+			HttpServletRequest request,
+			Model model){
+		return stockPerformanceService.stock(date,stock,model,request);
+	}
+	
+	@RequestMapping(value="/notice/stock", method=RequestMethod.POST,produces = "application/json; charset=utf-8")
+	public String stock2(
+			@RequestParam(value="date", required=false, defaultValue="")String date,
+			@RequestParam(value="stock", required=false, defaultValue="")String stock,
+			HttpServletRequest request,
+			Model model){
+		return stockNoticeService.stock(date,stock,model,request);
 	}
 	
 	
