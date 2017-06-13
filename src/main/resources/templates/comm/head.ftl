@@ -46,7 +46,24 @@
 		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/issuance/report">增发实施</a></li>
 		                    </ul>
                         </li>
-                         <li class=""><a class="page-scroll" href="${BASE_PATH}/concept/list">概念</a></li>
+                       
+                        <li class="dropdown profile-element">
+                        	<a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">基础信息</a>
+                        	<ul uib-dropdown-menu="" class="animated fadeInRight m-t-xs dropdown-menu">
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/concept/list">概念库</a></li>
+		                         <li class="divider"></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/gaosong/list">高送转</a></li>
+		                        <li class="divider"></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/equity/list">股权投资</a></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/equity/ipo">参股IPO</a></li>
+		                        <li class="divider"></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/shareholder/list/0">10大流通股</a></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/shareholder/list/1">10大股东</a></li>
+		                        <li><a ui-sref="app.profile" href="${BASE_PATH}/shareholder/calculate">股东分析</a></li>
+		                    </ul>
+                        </li>
+                        
+                         
                     </ul>
                  </div>
                 <div id="navbar" class="navbar-collapse collapse">
